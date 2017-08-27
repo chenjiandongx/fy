@@ -4,7 +4,7 @@
 
 **NOTE:** Windows 下代码页为 gbk 的不能显示音标，所以看音标要 chcp 65001 切换为 utf-8
 
-## 如何安装
+### 如何安装
 
 pip 安装
 ```
@@ -18,7 +18,7 @@ cd youdao-wd
 python setup.py install
 ```
 
-## 如何使用
+### 如何使用
 ```
 >>> wd -h
 
@@ -34,7 +34,7 @@ optional arguments:
   -v, --version  displays the current version of youdao
 ```
 
-## 查询单词
+### 查询单词
 ```python
 >>> wd python
 
@@ -48,14 +48,14 @@ optional arguments:
     Python regius['球蟒', '球蟒']
 ```
 
-## 查询句子
+### 查询句子
 ```python
 >>> life is short,you need python
 
 >>  life is short,you need python: 生命是短暂的,你需要python
 ```
 
-## 中文翻译
+### 中文翻译
 ```python
 >>> wd php是世界上最好的语言
 
