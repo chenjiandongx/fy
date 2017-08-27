@@ -50,7 +50,7 @@ optional arguments:
 
 ### 查询句子
 ```python
->>> life is short,you need python
+>>> wd life is short,you need python
 
 >>  life is short,you need python: 生命是短暂的,你需要python
 ```
