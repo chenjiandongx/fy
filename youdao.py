@@ -4,12 +4,14 @@ import requests
 
 __version__ = "0.1.0"
 
-_url = "http://fanyi.youdao.com/openapi.do?keyfrom={}&key={}&type=data&doctype=json&version=1.1&q={}"
-_headers = {
+HEADERS = {
     'X-Requested-With': 'XMLHttpRequest',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                  'Chrome/56.0.2924.87 Safari/537.36'
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36'
+                  '(KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
 }
+# 有道申请的 key
+KEY= "1945325576"
+KEY_FROM = "Youdao-dict-v21"
 
 
 def get_parser():
@@ -17,11 +19,12 @@ def get_parser():
 
     :return:
     """
-    parser = argparse.ArgumentParser(description='Query words meanings via the command line')
+    parser = argparse.ArgumentParser(
+        description='Query words meanings via the command line')
     parser.add_argument('query', metavar='QUERY', type=str, nargs='*',
                         help='the words to meanings')
-    parser.add_argument('-v', '--version', help='displays the current version of youdao',
-                        action='store_true')
+    parser.add_argument('-v', '--version', action='store_true',
+                        help='displays the current version of youdao')
     return parser
 
 
@@ -45,18 +48,18 @@ def command_line_runner():
 
 
 def query_words(words):
-    """使用有道 API 查询词典并在终端打印，输出的 result 格式（空格，>>，换行之类的）不要在意因为我有强迫症- -!
+    """使用有道 API 查询词典并在终端打印，输出的 result 格式
+    （空格，>>，换行之类的）不要在意因为我有强迫症- -!
 
     :param words:
         要查询的单词或句子
-    :return:
     """
-    # 申请的有道词典的 key
-    key = "1945325576"
-    key_from = "Youdao-dict-v21"
+    url = "http://fanyi.youdao.com/openapi.do?keyfrom={}&key={}" \
+          "&type=data&doctype=json&version=1.1&q={}"
 
     try:
-        req = requests.get(_url.format(key_from, key, words), headers=_headers).json()
+        req = requests.get(
+            url.format(KEY_FROM, KEY, words), headers=HEADERS).json()
         # errorCode 为 0 是正常状态
         if req['errorCode'] == 0:
             print(">>  {}: {} \n".format(words, "".join(req['translation'])))
@@ -78,7 +81,8 @@ def query_words(words):
                     print("    {}{}".format(value['key'], value['value']))
         else:
             # 输入查询的内容有误，检查拼写
-            print(">>  Exception: The words can't be found,please check your spelling")
+            print(">>  Exception: The words can't be found,"
+                  "please check your spelling")
     except Exception:
         # 网络错误，API 无法访问或者输入了奇怪的东西，如 fuck$#$#
         print(">>  Please check your spelling or network connection")
