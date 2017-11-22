@@ -1,6 +1,8 @@
 # 有道词典命令行版
 
-#### Python3 编写的有道词典命令行版本，支持单词或句子中英互译
+Python3 编写的有道词典命令行版本，支持单词或句子中英互译
+
+[![PyPI version](https://badge.fury.io/py/youdao-wd.svg)](https://badge.fury.io/py/youdao-wd) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **NOTE:** Windows 下代码页为 gbk 的不能显示音标，所以看音标要 chcp 65001 切换为 utf-8
 
