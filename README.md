@@ -1,6 +1,6 @@
-# 有道词典命令行版
+# 有道词典命令行版 
 
-Python3 编写的有道词典命令行版本，支持单词或句子中英互译
+> Python3 编写的有道词典命令行版本，支持单词或句子中英互译
 
 [![PyPI version](https://badge.fury.io/py/youdao-wd.svg)](https://badge.fury.io/py/youdao-wd) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -10,14 +10,15 @@ Python3 编写的有道词典命令行版本，支持单词或句子中英互译
 
 pip 安装
 ```
-pip install youdao-wd
+$ pip install youdao-wd
 ```
 
 源码安装
-```python
-git clone https://github.com/chenjiandongx/youdao-wd.git
-cd youdao-wd
-python setup.py install
+```
+$ git clone https://github.com/chenjiandongx/youdao-wd.git
+$ cd youdao-wd
+$ pip install -r requirements.txt
+$ python setup.py install
 ```
 
 ### 如何使用
@@ -37,7 +38,7 @@ optional arguments:
 ```
 
 ### 查询单词
-```python
+```
 >>> wd python
 
 >>  python : python
@@ -51,14 +52,14 @@ optional arguments:
 ```
 
 ### 查询句子
-```python
+```
 >>> wd life is short,you need python
 
 >>  life is short,you need python: 生命是短暂的,你需要python
 ```
 
 ### 中文翻译
-```python
+```
 >>> wd php是世界上最好的语言
 
 >>  php是世界上最好的语言: PHP is one of the best language in the world
