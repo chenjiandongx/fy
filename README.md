@@ -1,12 +1,10 @@
-# 有道词典命令行版 
+# 有道词典命令行版 [![PyPI version](https://badge.fury.io/py/youdao-wd.svg)](https://badge.fury.io/py/youdao-wd) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 > Python3 编写的有道词典命令行版本，支持单词或句子中英互译
 
-[![PyPI version](https://badge.fury.io/py/youdao-wd.svg)](https://badge.fury.io/py/youdao-wd) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 **NOTE:** Windows 下代码页为 gbk 的不能显示音标，所以看音标要 chcp 65001 切换为 utf-8
 
-### 如何安装
+### 安装
 
 pip 安装
 ```
@@ -21,7 +19,7 @@ $ pip install -r requirements.txt
 $ python setup.py install
 ```
 
-### 如何使用
+### 使用
 ```
 >>> wd -h
 
@@ -64,3 +62,7 @@ optional arguments:
 
 >>  php是世界上最好的语言: PHP is one of the best language in the world
 ```
+
+### LICENSE
+
+MIT [@chenjiandongx](https://github.com/chenjiandongx)
