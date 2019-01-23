@@ -6,11 +6,12 @@ from setuptools import setup
 setup(
     author="chenjiandongx",
     author_email="chenjiandongx@qq.com",
-    name="youdao-wd",
-    version="0.1.0",
+    name="fy",
+    version="1.0.0",
     license="MIT",
-    url="https://github.com/chenjiandongx/youdao-wd",
-    py_modules=["youdao"],
-    description="Query words meanings via the command line",
-    entry_points={"console_scripts": ["wd=youdao:command_line_runner"]},
+    url="https://github.com/chenjiandongx/fy",
+    py_modules=["fy"],
+    install_requires=["requests", "huepy"],
+    description="Translate words via command line",
+    entry_points={"console_scripts": ["fy=fy:command_line_runner"]},
 )
