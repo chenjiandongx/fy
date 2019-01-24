@@ -1,2 +1,4 @@
 requests
 huepy
+xmltodict
+pywin32;sys_platform=='win32'

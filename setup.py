@@ -11,7 +11,12 @@ setup(
     license="MIT",
     url="https://github.com/chenjiandongx/fy",
     py_modules=["fy"],
-    install_requires=["requests", "huepy"],
+    install_requires=[
+        "requests",
+        "huepy",
+        "xmltodict",
+        "pywin32;sys_platform=='win32'",
+    ],
     description="Translate words via command line",
     entry_points={"console_scripts": ["fy=fy:command_line_runner"]},
 )
