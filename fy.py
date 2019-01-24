@@ -28,9 +28,6 @@ ERR_MSG = "Sorry, something wrong, may be you should check your network or just 
 
 
 def get_parser():
-    """
-    解析命令行参数
-    """
     parser = argparse.ArgumentParser(description="Translate words via command line")
     parser.add_argument(
         "words", metavar="WORDS", type=str, nargs="*", help="the words to translate"
@@ -45,9 +42,6 @@ def get_parser():
 
 
 def command_line_runner():
-    """
-    执行命令行操作
-    """
     parser = get_parser()
     args = vars(parser.parse_args())
 
@@ -75,7 +69,6 @@ def youdao_api(words):
         resp = requests.get(
             url.format(YOUDAO_KEY_FROM, YOUDAO_KEY, words), headers=HEADERS
         ).json()
-
         phonetic = ""
         basic = resp.get("basic", None)
         if basic and resp.get("basic").get("phonetic"):
@@ -83,6 +76,10 @@ def youdao_api(words):
 
         print(" " + words + phonetic + huepy.grey("  ~  fanyi.youdao.com"))
         print()
+
+        translation = resp.get("translation", [])
+        if len(translation) > 0:
+            print(" - " + huepy.green(translation[0]))
 
         if basic and basic.get("explains", None):
             for item in basic.get("explains"):
@@ -129,7 +126,12 @@ def iciba_api(words):
             print()
 
         index = 1
-        for item in dct.get("sent"):
+        sent = dct.get("sent")
+        if not sent:
+            return
+        if not isinstance(sent, list):
+            sent = [sent]
+        for item in sent:
             for k, v in item.items():
                 if k == "orig":
                     print(highlight(huepy.grey(" {}. ".format(index) + v), words))
