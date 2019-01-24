@@ -125,7 +125,7 @@ def iciba_api(words):
                 acceptation = [acceptation]
             for p, a in zip([i for i in pos], [i for i in acceptation]):
                 if a and p:
-                    print(" - " + huepy.green(p + a))
+                    print(" - " + huepy.green(p + " " + a))
             print()
 
         index = 1
@@ -152,10 +152,13 @@ def highlight(text, keyword):
 
 def say(words):
     if sys.platform == "win32":
-        from win32com.client import Dispatch
+        try:
+            from win32com.client import Dispatch
 
-        speak = Dispatch("SAPI.SpVoice")
-        speak.Speak(words)
+            speak = Dispatch("SAPI.SpVoice")
+            speak.Speak(words)
+        except:
+            pass
 
 
 if __name__ == "__main__":
