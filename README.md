@@ -45,7 +45,7 @@ optional arguments:
 
 ![](https://user-images.githubusercontent.com/19553554/51674339-5556ed00-200b-11e9-8ff9-64a2c0a92a89.png)
 
-### Easter Egg 🥚
+### 🥚 Easter Egg
 
 Windows 系统下支持发音喔，Linux/MacOS 暂时没找到合适的第三库来实现发音功能!
 
