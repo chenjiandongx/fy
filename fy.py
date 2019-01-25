@@ -33,6 +33,9 @@ def get_parser():
         "words", metavar="WORDS", type=str, nargs="*", help="the words to translate"
     )
     parser.add_argument(
+        "-s", "--shell", action="store_true", help="whether to spawn the prompt shell"
+    )
+    parser.add_argument(
         "-v",
         "--version",
         action="store_true",
@@ -49,11 +52,19 @@ def command_line_runner():
         print(__version__)
         return
 
+    if args["shell"]:
+        prompt_shell()
+        return
+
     if not args["words"]:
         parser.print_help()
         return
 
     words = " ".join(args["words"])
+    _translate(words)
+
+
+def _translate(words):
     youdao_api(words)
     iciba_api(words)
     say(words)
@@ -141,6 +152,14 @@ def iciba_api(words):
 
     except Exception:
         print(" " + huepy.red(ERR_MSG))
+
+
+def prompt_shell():
+    from prompt_toolkit import prompt
+    from prompt_toolkit.completion import WordCompleter
+    from words import WORDS
+
+    _translate(prompt("\nEnter words: ", completer=WordCompleter(WORDS)))
 
 
 def highlight(text, keyword):
