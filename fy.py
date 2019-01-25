@@ -2,6 +2,7 @@
 # coding=utf-8
 
 import argparse
+import os
 import re
 import sys
 
@@ -25,6 +26,8 @@ YOUDAO_KEY_FROM = "Youdao-dict-v21"
 ICIBA_KEY = "D191EBD014295E913574E1EAF8E06666"
 
 ERR_MSG = "Sorry, something wrong, may be you should check your network or just try again later"
+
+HERE = os.path.join(os.path.abspath(os.path.dirname(__file__)), "words")
 
 
 def get_parser():
@@ -155,11 +158,23 @@ def iciba_api(words):
 
 
 def prompt_shell():
-    from prompt_toolkit import prompt
-    from prompt_toolkit.completion import WordCompleter
-    from words import WORDS
+    try:
+        from prompt_toolkit import prompt
+        from prompt_toolkit.completion import WordCompleter
 
-    _translate(prompt("\nEnter words: ", completer=WordCompleter(WORDS)))
+        with open(os.path.join(HERE, "words.txt"), "r", encoding="utf-8") as f:
+            words = [w.replace("\n", "") for w in f.readlines()]
+        while True:
+            _translate(
+                prompt(
+                    "Press <Ctrl+C> to exit shell.\nEnter words: ",
+                    completer=WordCompleter(words),
+                    complete_in_thread=True,
+                )
+            )
+            print()
+    except KeyboardInterrupt:
+        print(huepy.green("Bye!"))
 
 
 def highlight(text, keyword):
