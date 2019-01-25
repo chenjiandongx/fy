@@ -6,7 +6,7 @@
 
 * 单词字典查询
 * 中英句子互译
-* 发音（暂时只在 Windows 下，Linux/MacOS 暂时未找到合适的第三方库）
+* 发音（只在 Windows 下，Linux/MacOS 暂时未找到合适的第三方库）
 * Prompt shell，支持单词补全
 
 ### 🔰 安装
@@ -40,15 +40,15 @@ optional arguments:
   -v, --version  displays the current version of fy
 ```
 
-**查询单词**
+**查单词**
 
 ![](https://user-images.githubusercontent.com/19553554/51759080-60407900-2102-11e9-8d8b-3de94c8a9c8a.png)
 
-**翻译句子**
+**英译中**
 
 ![](https://user-images.githubusercontent.com/19553554/51759141-849c5580-2102-11e9-9097-08f85bcb873f.png)
 
-**中文翻译**
+**中译英**
 
 ![](https://user-images.githubusercontent.com/19553554/51759144-8534ec00-2102-11e9-9cf7-349ad5f4954b.png)
 
