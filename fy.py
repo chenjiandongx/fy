@@ -2,6 +2,7 @@
 # coding=utf-8
 
 import argparse
+import threading
 import os
 import re
 import sys
@@ -64,13 +65,24 @@ def command_line_runner():
         return
 
     words = " ".join(args["words"])
-    _translate(words)
+    run(words)
 
 
-def _translate(words):
+def translate(words):
     youdao_api(words)
     iciba_api(words)
-    say(words)
+
+
+def run(words):
+    threads = [
+        threading.Thread(target=translate, args=(words,)),
+        threading.Thread(target=say, args=(words,)),
+    ]
+
+    for th in threads:
+        th.start()
+    for th in threads:
+        th.join()
 
 
 def youdao_api(words):
@@ -165,7 +177,7 @@ def prompt_shell():
         with open(os.path.join(HERE, "words.txt"), "r", encoding="utf-8") as f:
             words = [w.replace("\n", "") for w in f.readlines()]
         while True:
-            _translate(
+            run(
                 prompt(
                     "Press <Ctrl+C> to exit shell.\nEnter words: ",
                     completer=WordCompleter(words),
@@ -174,7 +186,7 @@ def prompt_shell():
             )
             print()
     except KeyboardInterrupt:
-        print(huepy.green("Bye!"))
+        print(huepy.green("GoodBye!"))
 
 
 def highlight(text, keyword):
