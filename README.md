@@ -1,4 +1,4 @@
-# 🌐 fy [![PyPI version](https://badge.fury.io/py/fy.svg)](https://badge.fury.io/py/fy) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+# 🌐 fy [![PyPI version](https://badge.fury.io/py/fy.svg)](https://badge.fury.io/py/fy)  [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 > Translate words via command line. Inspired by [afc163/fanyi](https://github.com/afc163/fanyi)，but more features.
 
