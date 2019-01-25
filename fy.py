@@ -20,11 +20,13 @@ HEADERS = {
 }
 
 # YOUDAO KEY
+# 申请地址 https://ai.youdao.com/product-fanyi.s
 YOUDAO_KEY = "1945325576"
 YOUDAO_KEY_FROM = "Youdao-dict-v21"
 
 # iciba KEY
-ICIBA_KEY = "D191EBD014295E913574E1EAF8E06666"
+# 申请地址 http://open.iciba.com/index.php?c=api
+ICIBA_KEY = "4B26F43688FA072E0B94F68FFCE224CF"
 
 ERR_MSG = "Sorry, something wrong, may be you should check your network or just try again later"
 
