@@ -7,9 +7,9 @@ notifications:
     on_success: always # default: change
     on_failure: always # default: always
 python:
+  - 3.7
   - 3.6
   - 3.5
-  - 3.4
 before_install:
   - pip install -r test/requirements.txt
 script:

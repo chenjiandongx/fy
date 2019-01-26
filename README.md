@@ -1,4 +1,4 @@
-# 🌐 fy [![PyPI version](https://badge.fury.io/py/fy.svg)](https://badge.fury.io/py/fy)  [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
+# 🌐 fy [![Build Status](https://travis-ci.org/chenjiandongx/fy.svg?branch=master)](https://travis-ci.org/chenjiandongx/fy) [![Build status](https://ci.appveyor.com/api/projects/status/k1q0s2a5mn8roid2?svg=true)](https://ci.appveyor.com/project/chenjiandongx/fy) [![PyPI version](https://badge.fury.io/py/fy.svg)](https://badge.fury.io/py/fy) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 > Translate words via command line. Inspired by [afc163/fanyi](https://github.com/afc163/fanyi)，but more features.
 
