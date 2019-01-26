@@ -15,6 +15,9 @@
     <a href="https://badge.fury.io/py/fy">
         <img src="https://badge.fury.io/py/fy.svg" alt="PyPI - Python Version">
     </a>
+    <a href="https://pypi.org/project/fy/">
+        <img src="https://img.shields.io/pypi/pyversions/fy.svg?colorB=brightgreen" alt="PyPI - Python Version">
+    </a>
     <a href="https://opensource.org/licenses/MIT">
         <img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" alt="MIT License">
     </a>
