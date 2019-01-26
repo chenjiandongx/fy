@@ -1,6 +1,24 @@
-# 🌐 fy [![Build Status](https://travis-ci.org/chenjiandongx/fy.svg?branch=master)](https://travis-ci.org/chenjiandongx/fy) [![Build status](https://ci.appveyor.com/api/projects/status/k1q0s2a5mn8roid2?svg=true)](https://ci.appveyor.com/project/chenjiandongx/fy) [![PyPI version](https://badge.fury.io/py/fy.svg)](https://badge.fury.io/py/fy) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
-
-> Translate words via command line. Inspired by [afc163/fanyi](https://github.com/afc163/fanyi)，but more features.
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/19553554/51784033-185f3780-217e-11e9-8a06-c0f43c5c0145.png" alt="pyecharts logo" width=200 height=200 />
+</p>
+<h1 align="center">🌐 fy</h1>
+<p align="center">
+    <em>Translate words via command line. Inspired by <a href="https://github.com/afc163/fanyi">afc163/fanyi</a>, but more features.</em>
+</p>
+<p align="center">
+    <a href="https://travis-ci.org/chenjiandongx/fy">
+        <img src="https://travis-ci.org/chenjiandongx/fy.svg?branch=master" alt="Travis Build Status">
+    </a>
+    <a href="https://ci.appveyor.com/project/chenjiandongx/fy">
+        <img src="https://ci.appveyor.com/api/projects/status/k1q0s2a5mn8roid2?svg=true" alt="Appveyor Build Status">
+    </a>
+    <a href="https://badge.fury.io/py/fy">
+        <img src="https://badge.fury.io/py/fy.svg" alt="PyPI - Python Version">
+    </a>
+    <a href="https://opensource.org/licenses/MIT">
+        <img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" alt="MIT License">
+    </a>
+</p>
 
 ### ✨ 特性
 
