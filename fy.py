@@ -12,7 +12,7 @@ import huepy
 import requests
 import xmltodict
 
-__version__ = "1.2.0"
+__version__ = "1.2.1"
 
 HEADERS = {
     "X-Requested-With": "XMLHttpRequest",

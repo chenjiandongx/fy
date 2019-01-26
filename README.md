@@ -110,6 +110,9 @@ $ car ~/.fy.json
 #### V1.2.0 - 2018-01-26
 * Add: 提供配置文件
 
+#### V1.2.1 - 2018-01-06
+* Update: 声明支持的 Python 版本
+
 ### 📃 LICENSE
 
 MIT [©chenjiandongx](https://github.com/chenjiandongx)
