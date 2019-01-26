@@ -17,4 +17,3 @@ build: off
 
 test_script:
   "%PYTHON%/Scripts/nosetests --with-coverage --cover-package test"
-  
