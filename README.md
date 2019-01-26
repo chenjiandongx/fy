@@ -94,7 +94,7 @@ $ car ~/.fy.json
 
 **查询源**
 
-目前支持 youdao 以及 iciba
+目前支持 youdao 以及 iciba，如果只想使用 youdao 源，可修改为 `query_source: "youdao"`，iciba 同理
 
 **TOKEN KEY**
 > 现在两个暂时使用的都是我自己申请的，youdao 有限制，iciba 没有，开发者可以自行申请替换。

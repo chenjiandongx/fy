@@ -4,9 +4,9 @@
 import argparse
 import json
 import os
-import threading
 import re
 import sys
+import threading
 
 import huepy
 import requests
@@ -28,9 +28,9 @@ FY_CONF_PATH = os.path.join(os.path.expanduser("~"), ".fy.json")
 HERE = os.path.join(os.path.abspath(os.path.dirname(__file__)), "words")
 
 
-def generate_config(is_force=False):
+def generate_config(is_force: bool = False):
     conf = {
-        # query source, split by comma
+        # query source, split by commas
         "query_source": "youdao,iciba",
         # youdao key: http://open.iciba.com/index.php?c=api
         "youdao_key": "1945325576",
@@ -51,7 +51,7 @@ def generate_config(is_force=False):
         _write()
 
 
-def read_config():
+def read_config() -> dict:
     generate_config()
 
     def _read():
@@ -67,14 +67,22 @@ def read_config():
     return conf
 
 
-CONF = read_config()
-YOUDAO_KEY = CONF["youdao_key"]
-YOUDAO_KEY_FROM = CONF["youdao_key_from"]
-ICIBA_KEY = CONF["iciba_key"]
-QUERY_SOURCE = CONF["query_source"]
+class Conf:
+    def __init__(self, conf: dict):
+        self.youdao_key = conf["youdao_key"]
+        self.youdao_key_from = conf["youdao_key_from"]
+        self.iciba_key = conf["iciba_key"]
+        self.query_source = conf["query_source"]
 
 
-def get_parser():
+# global configure
+CONF = Conf(read_config())
+
+# types
+Parser = argparse.ArgumentParser
+
+
+def get_parser() -> Parser:
     parser = argparse.ArgumentParser(description="Translate words via command line")
     parser.add_argument(
         "words", metavar="WORDS", type=str, nargs="*", help="the words to translate"
@@ -96,7 +104,7 @@ def command_line_runner():
     args = vars(parser.parse_args())
 
     if args["version"]:
-        print(__version__)
+        print("fy", __version__)
         return
 
     if args["shell"]:
@@ -111,19 +119,19 @@ def command_line_runner():
     run(words)
 
 
-def translate(words):
-    if "youdao" in QUERY_SOURCE:
+def translate(words: str):
+    if "youdao" in CONF.query_source:
         youdao_api(words)
 
-    if "iciba" in QUERY_SOURCE:
+    if "iciba" in CONF.query_source:
         iciba_api(words)
 
-    if ("iciba" not in QUERY_SOURCE) and ("youdao" not in QUERY_SOURCE):
+    if ("iciba" not in CONF.query_source) and ("youdao" not in CONF.query_source):
         youdao_api(words)
         iciba_api(words)
 
 
-def run(words):
+def run(words: str):
     threads = [
         threading.Thread(target=translate, args=(words,)),
         threading.Thread(target=say, args=(words,)),
@@ -135,7 +143,7 @@ def run(words):
         th.join()
 
 
-def youdao_api(words):
+def youdao_api(words: str):
     print()
     url = (
         "http://fanyi.youdao.com/openapi.do?keyfrom={}&key={}&"
@@ -143,7 +151,7 @@ def youdao_api(words):
     )
     try:
         resp = requests.get(
-            url.format(YOUDAO_KEY_FROM, YOUDAO_KEY, words), headers=HEADERS
+            url.format(CONF.youdao_key_from, CONF.youdao_key, words), headers=HEADERS
         ).json()
         phonetic = ""
         basic = resp.get("basic", None)
@@ -176,13 +184,13 @@ def youdao_api(words):
         print(" " + huepy.red(ERR_MSG))
 
 
-def iciba_api(words):
+def iciba_api(words: str):
     print()
     print(huepy.grey(" -------- "))
     print()
     url = "http://dict-co.iciba.com/api/dictionary.php?key={key}&w={w}&type={type}"
     try:
-        resp = requests.get(url.format(key=ICIBA_KEY, w=words, type="xml"))
+        resp = requests.get(url.format(key=CONF.iciba_key, w=words, type="xml"))
         resp.encoding = "utf8"
 
         dct = xmltodict.parse(resp.text).get("dict")
@@ -239,7 +247,7 @@ def prompt_shell():
         print(huepy.green("GoodBye!"))
 
 
-def highlight(text, keyword):
+def highlight(text: str, keyword: str):
     return re.sub(
         keyword,
         "\33[0m" + "\33[93m" + keyword + "\33[0m" + "\33[37m",
@@ -248,7 +256,7 @@ def highlight(text, keyword):
     )
 
 
-def say(words):
+def say(words: str):
     if sys.platform == "win32":
         try:
             from win32com.client import Dispatch
