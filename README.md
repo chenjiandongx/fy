@@ -27,6 +27,7 @@
 
 * 单词字典查询
 * 中英句子互译
+* 关键词高亮
 * 发音（只在 Windows 下，Linux/MacOS 暂时未找到合适的第三方库）
 * Prompt shell，支持单词补全
 * 支持配置文件（配置查询来源以及对应接口的 TOKEN KEY）
@@ -97,6 +98,7 @@ $ car ~/.fy.json
 目前支持 youdao 以及 iciba，如果只想使用 youdao 源，可修改为 `query_source: "youdao"`，iciba 同理
 
 **TOKEN KEY**
+
 > 现在两个暂时使用的都是我自己申请的，youdao 有限制，iciba 没有，开发者可以自行申请替换。
 
 * `youdao_key` 和 `youdao_key_form` 是 youdao 接口需要的 token，申请地址为 http://open.iciba.com/index.php?c=api
@@ -104,16 +106,16 @@ $ car ~/.fy.json
 
 ### 📅 Changelog
 
-#### V1.0.0 - 2018-01-24
+#### V1.0.0 - 2019-01-24
 * Alpha: 第一个正式版发布
 
-#### V1.1.0 - 2018-01-25
+#### V1.1.0 - 2019-01-25
 * Add: 新增发音功能
 
-#### V1.2.0 - 2018-01-26
+#### V1.2.0 - 2019-01-26
 * Add: 提供配置文件
 
-#### V1.2.1 - 2018-01-06
+#### V1.2.1 - 2019-01-06
 * Update: 声明支持的 Python 版本
 
 ### 📃 LICENSE
