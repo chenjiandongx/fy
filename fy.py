@@ -2,8 +2,9 @@
 # coding=utf-8
 
 import argparse
-import threading
+import json
 import os
+import threading
 import re
 import sys
 
@@ -11,7 +12,7 @@ import huepy
 import requests
 import xmltodict
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 HEADERS = {
     "X-Requested-With": "XMLHttpRequest",
@@ -19,18 +20,58 @@ HEADERS = {
     "(KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
 }
 
-# YOUDAO KEY
-# 申请地址 https://ai.youdao.com/product-fanyi.s
-YOUDAO_KEY = "1945325576"
-YOUDAO_KEY_FROM = "Youdao-dict-v21"
+ERR_MSG = (
+    "something wrong, may be you should check your network or just try again later"
+)
 
-# iciba KEY
-# 申请地址 http://open.iciba.com/index.php?c=api
-ICIBA_KEY = "4B26F43688FA072E0B94F68FFCE224CF"
-
-ERR_MSG = "Sorry, something wrong, may be you should check your network or just try again later"
-
+FY_CONF_PATH = os.path.join(os.path.expanduser("~"), ".fy.json")
 HERE = os.path.join(os.path.abspath(os.path.dirname(__file__)), "words")
+
+
+def generate_config(is_force=False):
+    conf = {
+        # query source, split by comma
+        "query_source": "youdao,iciba",
+        # youdao key: http://open.iciba.com/index.php?c=api
+        "youdao_key": "1945325576",
+        "youdao_key_from": "Youdao-dict-v21",
+        # iciba key: http://open.iciba.com/index.php?c=api
+        "iciba_key": "4B26F43688FA072E0B94F68FFCE224CF",
+    }
+
+    def _write():
+        with open(FY_CONF_PATH, "w+", encoding="utf8") as f:
+            f.write(json.dumps(conf, indent=4))
+
+    if is_force:
+        _write()
+        return
+
+    if not os.path.exists(FY_CONF_PATH):
+        _write()
+
+
+def read_config():
+    generate_config()
+
+    def _read():
+        with open(FY_CONF_PATH, "r", encoding="utf8") as f:
+            return json.load(f)
+
+    try:
+        conf = _read()
+    except:
+        generate_config(True)
+        conf = _read()
+
+    return conf
+
+
+CONF = read_config()
+YOUDAO_KEY = CONF["youdao_key"]
+YOUDAO_KEY_FROM = CONF["youdao_key_from"]
+ICIBA_KEY = CONF["iciba_key"]
+QUERY_SOURCE = CONF["query_source"]
 
 
 def get_parser():
@@ -71,8 +112,15 @@ def command_line_runner():
 
 
 def translate(words):
-    youdao_api(words)
-    iciba_api(words)
+    if "youdao" in QUERY_SOURCE:
+        youdao_api(words)
+
+    if "iciba" in QUERY_SOURCE:
+        iciba_api(words)
+
+    if ("iciba" not in QUERY_SOURCE) and ("youdao" not in QUERY_SOURCE):
+        youdao_api(words)
+        iciba_api(words)
 
 
 def run(words):

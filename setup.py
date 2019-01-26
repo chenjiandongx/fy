@@ -3,11 +3,17 @@
 
 from setuptools import setup, find_packages
 
+# RELEASE STEPS
+# $ python setup.py sdist
+# $ twine upload dist/VX.Y.Z.tar.gz
+# $ git tag -a VX.Y.Z -m "release version VX.Y.Z"
+# $ git push origin VX.Y.Z
+
 setup(
     author="chenjiandongx",
     author_email="chenjiandongx@qq.com",
     name="fy",
-    version="1.1.0",
+    version="1.2.0",
     license="MIT",
     url="https://github.com/chenjiandongx/fy",
     py_modules=["fy"],
