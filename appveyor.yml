@@ -1,0 +1,20 @@
+environment:
+
+  matrix:
+    - PYTHON: "C:\\Python34-x64"
+      PYTHON_VERSION: "3.4"
+    - PYTHON: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5"
+    - PYTHON: "C:\\Python36-x64"
+      PYTHON_VERSION: "3.6"
+
+install:
+  - "%PYTHON%\\python.exe -m pip install -r requirements.txt"
+  - cd test
+  - "%PYTHON%\\python.exe -m pip install -r requirements.txt"
+
+build: off
+
+test_script:
+  "%PYTHON%/Scripts/nosetests --with-coverage --cover-package test"
+  
