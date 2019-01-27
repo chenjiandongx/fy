@@ -2,6 +2,8 @@
 # coding=utf-8
 
 import io
+import json
+import os
 from contextlib import redirect_stdout
 
 from fy import translate
@@ -46,3 +48,15 @@ def test_sentence():
 def test_chinese_to_english():
     word_output = ["Only the strong survive", "~  fanyi.youdao.com", "~  iciba.com"]
     _test_output("只有强者才能生存", word_output)
+
+
+def test_configure():
+    conf_path = os.path.join(os.path.expanduser("~"), ".fy.json")
+    with open(conf_path, "r", encoding="utf8") as f:
+        conf = json.load(f)
+        assert conf == {
+            "query_source": "youdao,iciba",
+            "youdao_key": "1945325576",
+            "youdao_key_from": "Youdao-dict-v21",
+            "iciba_key": "4B26F43688FA072E0B94F68FFCE224CF",
+        }
