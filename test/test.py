@@ -60,3 +60,7 @@ def test_configure():
             "youdao_key_from": "Youdao-dict-v21",
             "iciba_key": "4B26F43688FA072E0B94F68FFCE224CF",
         }
+
+
+def test_database():
+    assert os.path.exists(os.path.join(os.path.expanduser("~"), ".fy.sqlite")) is True
