@@ -3,4 +3,5 @@ huepy
 xmltodict
 pywin32;sys_platform=='win32'
 prompt_toolkit>=2.0.7
-
+pony
+tabulate

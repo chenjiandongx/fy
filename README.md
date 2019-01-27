@@ -31,6 +31,7 @@
 * 发音（只在 Windows 下，Linux/MacOS 暂时未找到合适的第三方库）
 * Prompt shell，支持单词补全
 * 支持配置文件（配置查询来源以及对应接口的 TOKEN KEY）
+* 记录查询历史
 
 ### 🔰 安装
 
@@ -50,17 +51,20 @@ $ python setup.py install
 ### 📝 使用
 
 ```bash
-usage: fy [-h] [-s] [-v] [WORDS [WORDS ...]]
+usage: fy [-h] [-s] [-r] [-d [DELETE [DELETE ...]]] [-v] [WORDS [WORDS ...]]
 
 Translate words via command line
 
 positional arguments:
-  WORDS          the words to translate
+  WORDS                 the words to translate
 
 optional arguments:
-  -h, --help     show this help message and exit
-  -s, --shell    whether to spawn the prompt shell
-  -v, --version  displays the current version of fy
+  -h, --help            show this help message and exit
+  -s, --shell           spawn the prompt shell
+  -r, --records         show your query records
+  -d [DELETE [DELETE ...]], --delete [DELETE [DELETE ...]]
+                        delete query words form database
+  -v, --version         displays the current version of fy
 ```
 
 **查单词**
@@ -78,6 +82,10 @@ optional arguments:
 **prompt shell**
 
 ![](https://user-images.githubusercontent.com/19553554/51759432-2d4ab500-2103-11e9-948d-45320fd90504.gif)
+
+**查询历史记录**
+
+![](https://user-images.githubusercontent.com/19553554/51802223-b50afd80-2282-11e9-8f7a-a237ac3e87be.png)
 
 ### 🔧 配置
 
@@ -106,17 +114,20 @@ $ car ~/.fy.json
 
 ### 📅 Changelog
 
-#### V1.0.0 - 2019-01-24
-* Alpha: 第一个正式版发布
+#### V1.3.0 - 2019-01-27
+* Add: 支持保存历史查询记录
 
-#### V1.1.0 - 2019-01-25
-* Add: 新增发音功能
+#### V1.2.1 - 2019-01-26
+* Update: 声明支持的 Python 版本
 
 #### V1.2.0 - 2019-01-26
 * Add: 提供配置文件
 
-#### V1.2.1 - 2019-01-06
-* Update: 声明支持的 Python 版本
+#### V1.1.0 - 2019-01-25
+* Add: 新增发音功能
+
+#### V1.0.0 - 2019-01-24
+* Alpha: 第一个正式版发布
 
 ### 📃 LICENSE
 

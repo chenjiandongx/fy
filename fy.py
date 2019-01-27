@@ -2,6 +2,7 @@
 # coding=utf-8
 
 import argparse
+import datetime
 import json
 import os
 import re
@@ -11,8 +12,10 @@ import threading
 import huepy
 import requests
 import xmltodict
+from pony import orm
+from tabulate import tabulate
 
-__version__ = "1.2.1"
+__version__ = "1.3.0"
 
 HEADERS = {
     "X-Requested-With": "XMLHttpRequest",
@@ -24,8 +27,55 @@ ERR_MSG = (
     "something wrong, may be you should check your network or just try again later"
 )
 
+
+MAX_RECORDS = 50
 FY_CONF_PATH = os.path.join(os.path.expanduser("~"), ".fy.json")
+FY_DB_PATH = os.path.join(os.path.expanduser("~"), ".fy.sqlite")
 HERE = os.path.join(os.path.abspath(os.path.dirname(__file__)), "words")
+
+db = orm.Database()
+db.bind(provider="sqlite", filename=FY_DB_PATH, create_db=True)
+
+
+class Words(db.Entity):
+    __table__ = "words"
+    words = orm.PrimaryKey(str)
+    count = orm.Required(int)
+    date = orm.Required(datetime.datetime)
+
+
+db.generate_mapping(create_tables=True)
+
+
+@orm.db_session
+def sql_query():
+    result = Words.select(lambda x: x).order_by(
+        orm.desc(Words.count), orm.desc(Words.date)
+    )[:MAX_RECORDS]
+    table = [(r.words, r.count, r.date) for r in result]
+    print()
+    print(
+        huepy.grey(tabulate(table, tablefmt="grid", headers=["words", "count", "date"]))
+    )
+
+
+@orm.db_session
+def sql_update(words: str):
+    query = Words.get(words=words)
+    if query:
+        query.count += 1
+    else:
+        Words(
+            words=words,
+            count=1,
+            date=datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        )
+    db.commit()
+
+
+@orm.db_session
+def sql_delete(words: str):
+    Words.select(lambda w: w.words == words).delete()
 
 
 def generate_config(is_force: bool = False):
@@ -88,7 +138,13 @@ def get_parser() -> Parser:
         "words", metavar="WORDS", type=str, nargs="*", help="the words to translate"
     )
     parser.add_argument(
-        "-s", "--shell", action="store_true", help="whether to spawn the prompt shell"
+        "-s", "--shell", action="store_true", help="spawn the prompt shell"
+    )
+    parser.add_argument(
+        "-r", "--records", action="store_true", help="show your query records"
+    )
+    parser.add_argument(
+        "-d", "--delete", type=str, nargs="*", help="delete query words form database"
     )
     parser.add_argument(
         "-v",
@@ -103,6 +159,8 @@ def command_line_runner():
     parser = get_parser()
     args = vars(parser.parse_args())
 
+    words = " ".join(args["words"])
+
     if args["version"]:
         print("fy", __version__)
         return
@@ -111,11 +169,19 @@ def command_line_runner():
         prompt_shell()
         return
 
+    if args["records"]:
+        sql_query()
+        return
+
+    delete_words = args["delete"]
+    if delete_words:
+        sql_delete(" ".join(delete_words))
+        return
+
     if not args["words"]:
         parser.print_help()
         return
 
-    words = " ".join(args["words"])
     run(words)
 
 
@@ -135,6 +201,7 @@ def run(words: str):
     threads = [
         threading.Thread(target=translate, args=(words,)),
         threading.Thread(target=say, args=(words,)),
+        threading.Thread(target=sql_update, args=(words,)),
     ]
 
     for th in threads:

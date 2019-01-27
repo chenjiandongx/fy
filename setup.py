@@ -13,7 +13,7 @@ setup(
     author="chenjiandongx",
     author_email="chenjiandongx@qq.com",
     name="fy",
-    version="1.2.1",
+    version="1.3.0",
     license="MIT",
     url="https://github.com/chenjiandongx/fy",
     py_modules=["fy"],
@@ -26,6 +26,8 @@ setup(
         "xmltodict",
         "pywin32;sys_platform=='win32'",
         "prompt_toolkit>=2.0.7",
+        "pony",
+        "tabulate",
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
