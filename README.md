@@ -31,7 +31,7 @@
 * 发音（只在 Windows 下，Linux/MacOS 暂时未找到合适的第三方库）
 * Prompt shell，支持单词补全
 * 支持配置文件（配置查询来源以及对应接口的 TOKEN KEY）
-* 记录查询历史
+* records shell，记录查询历史
 
 ### 🔰 安装
 
@@ -51,41 +51,41 @@ $ python setup.py install
 ### 📝 使用
 
 ```bash
-usage: fy [-h] [-s] [-r] [-d [DELETE [DELETE ...]]] [-v] [WORDS [WORDS ...]]
+usage: fy [-h] [-s] [-r] [-v] [WORDS [WORDS ...]]
 
 Translate words via command line
 
 positional arguments:
-  WORDS                 the words to translate
+  WORDS          the words to translate
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -s, --shell           spawn the prompt shell
-  -r, --records         show your query records
-  -d [DELETE [DELETE ...]], --delete [DELETE [DELETE ...]]
-                        delete query words form database
-  -v, --version         displays the current version of fy
+  -h, --help     show this help message and exit
+  -s, --shell    spawn the query prompt shell
+  -r, --records  spawn the records prompt shell
+  -v, --version  displays the current version of fy
 ```
 
 **查单词**
 
-![](https://user-images.githubusercontent.com/19553554/51759080-60407900-2102-11e9-8d8b-3de94c8a9c8a.png)
+![](https://user-images.githubusercontent.com/19553554/51814976-07870100-22f9-11e9-867f-e3c4e0f9e93c.png)
 
 **英译中**
 
-![](https://user-images.githubusercontent.com/19553554/51759141-849c5580-2102-11e9-9097-08f85bcb873f.png)
+![](https://user-images.githubusercontent.com/19553554/51814952-e9b99c00-22f8-11e9-90c0-46ac6f324189.png)
 
 **中译英**
 
-![](https://user-images.githubusercontent.com/19553554/51759144-8534ec00-2102-11e9-9cf7-349ad5f4954b.png)
+![](https://user-images.githubusercontent.com/19553554/51814973-0524a700-22f9-11e9-9e95-6b5a397a76eb.png)
 
-**prompt shell**
+**query prompt shell**
 
-![](https://user-images.githubusercontent.com/19553554/51759432-2d4ab500-2103-11e9-948d-45320fd90504.gif)
+![](https://user-images.githubusercontent.com/19553554/51815067-71070f80-22f9-11e9-9dae-4b6cbb5947a0.gif)
 
-**查询历史记录**
+**records prompt shell**
+> 数据表名称为 `words`
 
-![](https://user-images.githubusercontent.com/19553554/51802223-b50afd80-2282-11e9-8f7a-a237ac3e87be.png)
+![](https://user-images.githubusercontent.com/19553554/51814828-2fc23000-22f8-11e9-9209-cc7ef15b40c6.gif)
+
 
 ### 🔧 配置
 
@@ -113,6 +113,9 @@ $ car ~/.fy.json
 * `iciba_key` 是 iciba 需要的 token，申请地址为 http://open.iciba.com/index.php?c=api
 
 ### 📅 Changelog
+
+#### V1.4.0 - 2019-01-28
+* Update: 使用 sqlite prompt shell
 
 #### V1.3.0 - 2019-01-27
 * Add: 支持保存历史查询记录

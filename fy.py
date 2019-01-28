@@ -13,9 +13,8 @@ import huepy
 import requests
 import xmltodict
 from pony import orm
-from tabulate import tabulate
 
-__version__ = "1.3.0"
+__version__ = "1.4.0"
 
 HEADERS = {
     "X-Requested-With": "XMLHttpRequest",
@@ -28,7 +27,6 @@ ERR_MSG = (
 )
 
 
-MAX_RECORDS = 50
 FY_CONF_PATH = os.path.join(os.path.expanduser("~"), ".fy.json")
 FY_DB_PATH = os.path.join(os.path.expanduser("~"), ".fy.sqlite")
 HERE = os.path.join(os.path.abspath(os.path.dirname(__file__)), "words")
@@ -48,18 +46,6 @@ db.generate_mapping(create_tables=True)
 
 
 @orm.db_session
-def sql_query():
-    result = Words.select(lambda x: x).order_by(
-        orm.desc(Words.count), orm.desc(Words.date)
-    )[:MAX_RECORDS]
-    table = [(r.words, r.count, r.date) for r in result]
-    print()
-    print(
-        huepy.grey(tabulate(table, tablefmt="grid", headers=["words", "count", "date"]))
-    )
-
-
-@orm.db_session
 def sql_update(words: str):
     query = Words.get(words=words)
     if query:
@@ -71,11 +57,6 @@ def sql_update(words: str):
             date=datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
         )
     db.commit()
-
-
-@orm.db_session
-def sql_delete(words: str):
-    Words.select(lambda w: w.words == words).delete()
 
 
 def generate_config(is_force: bool = False):
@@ -138,13 +119,10 @@ def get_parser() -> Parser:
         "words", metavar="WORDS", type=str, nargs="*", help="the words to translate"
     )
     parser.add_argument(
-        "-s", "--shell", action="store_true", help="spawn the prompt shell"
+        "-s", "--shell", action="store_true", help="spawn the query prompt shell"
     )
     parser.add_argument(
-        "-r", "--records", action="store_true", help="show your query records"
-    )
-    parser.add_argument(
-        "-d", "--delete", type=str, nargs="*", help="delete query words form database"
+        "-r", "--records", action="store_true", help="spawn the records prompt shell"
     )
     parser.add_argument(
         "-v",
@@ -162,20 +140,15 @@ def command_line_runner():
     words = " ".join(args["words"])
 
     if args["version"]:
-        print("fy", __version__)
+        print(huepy.cyan("fy " + __version__))
         return
 
     if args["shell"]:
-        prompt_shell()
+        query_prompt_shell()
         return
 
     if args["records"]:
-        sql_query()
-        return
-
-    delete_words = args["delete"]
-    if delete_words:
-        sql_delete(" ".join(delete_words))
+        records_prompt_shell()
         return
 
     if not args["words"]:
@@ -289,12 +262,12 @@ def iciba_api(words: str):
                     index += 1
                 elif k == "trans":
                     print(highlight(huepy.cyan("    " + v), words))
-
+        print()
     except Exception:
         print(" " + huepy.red(ERR_MSG))
 
 
-def prompt_shell():
+def query_prompt_shell():
     try:
         from prompt_toolkit import prompt
         from prompt_toolkit.completion import WordCompleter
@@ -312,6 +285,17 @@ def prompt_shell():
             print()
     except KeyboardInterrupt:
         print(huepy.green("GoodBye!"))
+
+
+def records_prompt_shell():
+    try:
+        from litecli.main import LiteCli
+
+        litecli = LiteCli(prompt="Type quit to exit shell.\nPrompt: ")
+        litecli.connect(database=FY_DB_PATH)
+        litecli.run_cli()
+    except:
+        print(huepy.red("sorry, it can't spawn records prompt shell."))
 
 
 def highlight(text: str, keyword: str):
