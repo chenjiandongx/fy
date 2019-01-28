@@ -12,6 +12,9 @@
     <a href="https://ci.appveyor.com/project/chenjiandongx/fy">
         <img src="https://ci.appveyor.com/api/projects/status/k1q0s2a5mn8roid2?svg=true" alt="Appveyor Build Status">
     </a>
+     <a href="https://codecov.io/gh/chenjiandongx/fy">
+        <img src="https://codecov.io/gh/chenjiandongx/fy/branch/master/graph/badge.svg" alt="Appveyor Build Status">
+    </a>
     <a href="https://badge.fury.io/py/fy">
         <img src="https://badge.fury.io/py/fy.svg" alt="PyPI - Python Version">
     </a>
