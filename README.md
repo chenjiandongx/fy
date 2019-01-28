@@ -100,7 +100,8 @@ $ car ~/.fy.json
     "query_source": "youdao,iciba",
     "youdao_key": "1945325576",
     "youdao_key_from": "Youdao-dict-v21",
-    "iciba_key": "4B26F43688FA072E0B94F68FFCE224CF"
+    "iciba_key": "4B26F43688FA072E0B94F68FFCE224CF",
+    "enable_sound": true    // 是否开启声音
 }
 ```
 
@@ -116,6 +117,9 @@ $ car ~/.fy.json
 * `iciba_key` 是 iciba 需要的 token，申请地址为 http://open.iciba.com/index.php?c=api
 
 ### 📅 Changelog
+
+#### V1.4.1 - 2018-01-28
+* Add: 新增关闭声音配置项
 
 #### V1.4.0 - 2019-01-28
 * Update: 使用 sqlite prompt shell

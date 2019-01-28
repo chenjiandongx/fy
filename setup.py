@@ -13,7 +13,7 @@ setup(
     author="chenjiandongx",
     author_email="chenjiandongx@qq.com",
     name="fy",
-    version="1.4.0",
+    version="1.4.1",
     license="MIT",
     url="https://github.com/chenjiandongx/fy",
     py_modules=["fy"],

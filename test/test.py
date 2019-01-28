@@ -59,6 +59,7 @@ def test_configure():
             "youdao_key": "1945325576",
             "youdao_key_from": "Youdao-dict-v21",
             "iciba_key": "4B26F43688FA072E0B94F68FFCE224CF",
+            "enable_sound": True,
         }
 
 

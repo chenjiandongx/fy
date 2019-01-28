@@ -14,7 +14,7 @@ import requests
 import xmltodict
 from pony import orm
 
-__version__ = "1.4.0"
+__version__ = "1.4.1"
 
 HEADERS = {
     "X-Requested-With": "XMLHttpRequest",
@@ -68,6 +68,7 @@ def generate_config(is_force: bool = False):
         "youdao_key_from": "Youdao-dict-v21",
         # iciba key: http://open.iciba.com/index.php?c=api
         "iciba_key": "4B26F43688FA072E0B94F68FFCE224CF",
+        "enable_sound": True,
     }
 
     def _write():
@@ -104,6 +105,7 @@ class Conf:
         self.youdao_key_from = conf["youdao_key_from"]
         self.iciba_key = conf["iciba_key"]
         self.query_source = conf["query_source"]
+        self.enable_sound = conf["enable_sound"]
 
 
 # global configure
@@ -173,9 +175,11 @@ def translate(words: str):
 def run(words: str):
     threads = [
         threading.Thread(target=translate, args=(words,)),
-        threading.Thread(target=say, args=(words,)),
         threading.Thread(target=sql_update, args=(words,)),
     ]
+
+    if CONF.enable_sound:
+        threads.append(threading.Thread(target=say, args=(words,)))
 
     for th in threads:
         th.start()
