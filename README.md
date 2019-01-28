@@ -101,7 +101,7 @@ $ car ~/.fy.json
     "youdao_key": "1945325576",
     "youdao_key_from": "Youdao-dict-v21",
     "iciba_key": "4B26F43688FA072E0B94F68FFCE224CF",
-    "enable_sound": true    // 是否开启声音
+    "enable_sound": true
 }
 ```
 
