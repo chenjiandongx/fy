@@ -39,8 +39,6 @@ def test_sentence():
         "什么是他妈的",
         "~  fanyi.youdao.com",
         "~  iciba.com",
-        "他妈的怎么了",
-        "那该死的",
     ]
     _test_output("what the fuck", word_output)
 
@@ -55,7 +53,7 @@ def test_configure():
     with open(conf_path, "r", encoding="utf8") as f:
         conf = json.load(f)
         assert conf == {
-            "query_source": "youdao,iciba",
+            "query_source": "google,youdao,iciba",
             "youdao_key": "1945325576",
             "youdao_key_from": "Youdao-dict-v21",
             "iciba_key": "4B26F43688FA072E0B94F68FFCE224CF",
