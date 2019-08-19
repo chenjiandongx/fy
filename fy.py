@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding=utf-8
-
 import argparse
 import datetime
 import json
@@ -12,9 +9,10 @@ import threading
 import huepy
 import requests
 import xmltodict
+from googletrans import Translator
 from pony import orm
 
-__version__ = "1.4.1"
+__version__ = "1.5.0"
 
 HEADERS = {
     "X-Requested-With": "XMLHttpRequest",
@@ -22,9 +20,7 @@ HEADERS = {
     "(KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
 }
 
-ERR_MSG = (
-    "something wrong, may be you should check your network or just try again later"
-)
+ERR_MSG = "Exception occurs, check your network or just try again later"
 
 
 FY_CONF_PATH = os.path.join(os.path.expanduser("~"), ".fy.json")
@@ -62,7 +58,7 @@ def sql_update(words: str):
 def generate_config(is_force: bool = False):
     conf = {
         # query source, split by commas
-        "query_source": "youdao,iciba",
+        "query_source": "google,youdao,iciba",
         # youdao key: http://open.iciba.com/index.php?c=api
         "youdao_key": "1945325576",
         "youdao_key_from": "Youdao-dict-v21",
@@ -161,6 +157,9 @@ def command_line_runner():
 
 
 def translate(words: str):
+    if "google" in CONF.query_source:
+        google_api(words)
+
     if "youdao" in CONF.query_source:
         youdao_api(words)
 
@@ -187,7 +186,25 @@ def run(words: str):
         th.join()
 
 
+def google_api(words: str):
+    print()
+
+    def switch_language():
+        for w in words:
+            if "\u4e00" <= w <= "\u9fff":
+                return "en"
+        return "zh-cn"
+
+    translator = Translator(service_urls=["translate.google.cn"])
+    text = translator.translate(words, dest=switch_language()).text
+    print(" " + words + huepy.grey("  ~  translate.google.cn"))
+    print()
+    print(" - " + huepy.cyan(text))
+
+
 def youdao_api(words: str):
+    print()
+    print(huepy.grey(" -------- "))
     print()
     url = (
         "http://fanyi.youdao.com/openapi.do?keyfrom={}&key={}&"
@@ -224,7 +241,7 @@ def youdao_api(words: str):
                 )
                 print("    " + huepy.cyan(", ".join(item.get("value"))))
 
-    except Exception:
+    except:
         print(" " + huepy.red(ERR_MSG))
 
 
@@ -267,7 +284,7 @@ def iciba_api(words: str):
                 elif k == "trans":
                     print(highlight(huepy.cyan("    " + v), words))
         print()
-    except Exception:
+    except:
         print(" " + huepy.red(ERR_MSG))
 
 

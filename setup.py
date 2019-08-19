@@ -13,7 +13,7 @@ setup(
     author="chenjiandongx",
     author_email="chenjiandongx@qq.com",
     name="fy",
-    version="1.4.1",
+    version="1.5.0",
     license="MIT",
     url="https://github.com/chenjiandongx/fy",
     py_modules=["fy"],
@@ -27,6 +27,7 @@ setup(
         "pywin32;sys_platform=='win32'",
         "litecli",
         "pony",
+        "googletrans",
     ],
     classifiers=[
         "Development Status :: 4 - Beta",

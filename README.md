@@ -97,7 +97,7 @@ optional arguments:
 $ car ~/.fy.json
 ```json
 {
-    "query_source": "youdao,iciba",
+    "query_source": "google,youdao,iciba",
     "youdao_key": "1945325576",
     "youdao_key_from": "Youdao-dict-v21",
     "iciba_key": "4B26F43688FA072E0B94F68FFCE224CF",
@@ -107,18 +107,21 @@ $ car ~/.fy.json
 
 **查询源**
 
-目前支持 youdao 以及 iciba，如果只想使用 youdao 源，可修改为 `query_source: "youdao"`，iciba 同理
+目前支持 google、youdao、iciba，如果只想使用 youdao 源，可修改为 `query_source: "youdao"`，google/iciba 同理
 
 **TOKEN KEY**
 
-> 现在两个暂时使用的都是我自己申请的，youdao 有限制，iciba 没有，开发者可以自行申请替换。
+> 目前使用的 TOKEN KEY 都是我自己申请的，youdao 有限制，iciba 没有，开发者可以自行申请替换。
 
 * `youdao_key` 和 `youdao_key_form` 是 youdao 接口需要的 token，申请地址为 http://open.iciba.com/index.php?c=api
 * `iciba_key` 是 iciba 需要的 token，申请地址为 http://open.iciba.com/index.php?c=api
 
 ### 📅 Changelog
 
-#### V1.4.1 - 2018-01-28
+#### V1.5.0 - 2019-08-19
+* Add: 新增 google 翻译源
+
+#### V1.4.1 - 2019-01-28
 * Add: 新增关闭声音配置项
 
 #### V1.4.0 - 2019-01-28

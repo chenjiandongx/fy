@@ -4,3 +4,4 @@ xmltodict
 pywin32;sys_platform=='win32'
 litecli
 pony
+googletrans
