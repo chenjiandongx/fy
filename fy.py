@@ -12,7 +12,7 @@ import xmltodict
 from googletrans import Translator
 from pony import orm
 
-__version__ = "1.5.0"
+__version__ = "1.5.1"
 
 HEADERS = {
     "X-Requested-With": "XMLHttpRequest",
@@ -246,7 +246,6 @@ def youdao_api(words: str):
 
 
 def iciba_api(words: str):
-    print()
     print(huepy.grey(" -------- "))
     print()
     url = "http://dict-co.iciba.com/api/dictionary.php?key={key}&w={w}&type={type}"
