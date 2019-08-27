@@ -12,7 +12,7 @@ import xmltodict
 from googletrans import Translator
 from pony import orm
 
-__version__ = "1.5.1"
+__version__ = "1.5.2"
 
 HEADERS = {
     "X-Requested-With": "XMLHttpRequest",
@@ -117,10 +117,13 @@ def get_parser() -> Parser:
         "words", metavar="WORDS", type=str, nargs="*", help="the words to translate"
     )
     parser.add_argument(
-        "-s", "--shell", action="store_true", help="spawn the query prompt shell"
+        "-s", "--shell", action="store_true", help="spawn a query prompt shell."
     )
     parser.add_argument(
-        "-r", "--records", action="store_true", help="spawn the records prompt shell"
+        "-r", "--records", action="store_true", help="spawn a records prompt shell."
+    )
+    parser.add_argument(
+        "-R", "--reset", action="store_true", help="reset fy configuration."
     )
     parser.add_argument(
         "-v",
@@ -139,6 +142,10 @@ def command_line_runner():
 
     if args["version"]:
         print(huepy.cyan("fy " + __version__))
+        return
+
+    if args["reset"]:
+        generate_config(True)
         return
 
     if args["shell"]:
@@ -246,6 +253,7 @@ def youdao_api(words: str):
 
 
 def iciba_api(words: str):
+    print()
     print(huepy.grey(" -------- "))
     print()
     url = "http://dict-co.iciba.com/api/dictionary.php?key={key}&w={w}&type={type}"

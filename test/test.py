@@ -34,12 +34,7 @@ def test_hello():
 
 
 def test_sentence():
-    word_output = [
-        "什么他妈的",
-        "什么是他妈的",
-        "~  fanyi.youdao.com",
-        "~  iciba.com",
-    ]
+    word_output = ["什么他妈的", "什么是他妈的", "~  fanyi.youdao.com", "~  iciba.com"]
     _test_output("what the fuck", word_output)
 
 

@@ -54,7 +54,8 @@ $ python setup.py install
 ### 📝 使用
 
 ```bash
-usage: fy [-h] [-s] [-r] [-v] [WORDS [WORDS ...]]
+$ fy --help
+usage: fy [-h] [-s] [-r] [-R] [-v] [WORDS [WORDS ...]]
 
 Translate words via command line
 
@@ -63,9 +64,10 @@ positional arguments:
 
 optional arguments:
   -h, --help     show this help message and exit
-  -s, --shell    spawn the query prompt shell
-  -r, --records  spawn the records prompt shell
-  -v, --version  displays the current version of fy
+  -s, --shell    spawn a query prompt shell.
+  -r, --records  spawn a records prompt shell.
+  -R, --reset    reset fy configuration.
+  -v, --version  displays the current version of fy.
 ```
 
 **查单词**
@@ -118,8 +120,11 @@ $ car ~/.fy.json
 
 ### 📅 Changelog
 
+#### V1.5.2 - 2019-08-28
+* Add: 新增 `-R` 参数，重置配置信息
+
 #### V1.5.1 - 2019-08-19
-* Add: 输出格式调整
+* Update: 输出格式调整
 
 #### V1.5.0 - 2019-08-19
 * Add: 新增 google 翻译源
