@@ -20,12 +20,7 @@ def _test_output(word, word_output):
 
 def test_hello():
     word_output = [
-        "n. 表示问候， 惊奇或唤起注意时的用语",
-        "哈乐哈乐, 乐扣乐扣",
-        "~  fanyi.youdao.com",
-        "~  iciba.com",
-        "哈喽，喂；你好，您好；表示问候；打招呼",
-        "你好玛丽, 你好柏里欧, 你好图鲁兹",
+        "喂，咦，喂，喂。我一点也听不清.",
     ]
     _test_output("hello", word_output)
 
