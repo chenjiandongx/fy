@@ -7,12 +7,13 @@ import sys
 import threading
 
 import huepy
+import pangu
 import requests
 import xmltodict
 from googletrans import Translator
 from pony import orm
 
-__version__ = "1.5.2"
+__version__ = "1.6.0"
 
 HEADERS = {
     "X-Requested-With": "XMLHttpRequest",
@@ -203,7 +204,7 @@ def google_api(words: str):
         return "zh-cn"
 
     translator = Translator(service_urls=["translate.google.cn"])
-    text = translator.translate(words, dest=switch_language()).text
+    text = pangu.spacing_text(translator.translate(words, dest=switch_language()).text)
     print(" " + words + huepy.grey("  ~  translate.google.cn"))
     print()
     print(" - " + huepy.cyan(text))
@@ -221,6 +222,7 @@ def youdao_api(words: str):
         resp = requests.get(
             url.format(CONF.youdao_key_from, CONF.youdao_key, words), headers=HEADERS
         ).json()
+
         phonetic = ""
         basic = resp.get("basic", None)
         if basic and resp.get("basic").get("phonetic"):
@@ -231,11 +233,11 @@ def youdao_api(words: str):
 
         translation = resp.get("translation", [])
         if len(translation) > 0:
-            print(" - " + huepy.green(translation[0]))
+            print(" - " + pangu.spacing_text(huepy.green(translation[0])))
 
         if basic and basic.get("explains", None):
             for item in basic.get("explains"):
-                print(huepy.grey(" - ") + huepy.green(item))
+                print(huepy.grey(" - ") + pangu.spacing_text(huepy.green(item)))
         print()
 
         web = resp.get("web", None)
@@ -327,6 +329,7 @@ def records_prompt_shell():
 
 
 def highlight(text: str, keyword: str):
+    text = pangu.spacing_text(text)
     return re.sub(
         keyword,
         "\33[0m" + "\33[93m" + keyword + "\33[0m" + "\33[37m",
