@@ -72,24 +72,24 @@ optional arguments:
 
 **查单词**
 
-![](https://user-images.githubusercontent.com/19553554/51814976-07870100-22f9-11e9-867f-e3c4e0f9e93c.png)
+![](https://user-images.githubusercontent.com/19553554/64939403-75396a80-d893-11e9-9772-021f165d6647.png)
 
 **英译中**
 
-![](https://user-images.githubusercontent.com/19553554/51814952-e9b99c00-22f8-11e9-90c0-46ac6f324189.png)
+![](https://user-images.githubusercontent.com/19553554/64939404-75d20100-d893-11e9-97a3-c574dc75df2a.png)
 
 **中译英**
 
-![](https://user-images.githubusercontent.com/19553554/51814973-0524a700-22f9-11e9-9e95-6b5a397a76eb.png)
+![](https://user-images.githubusercontent.com/19553554/64939405-75d20100-d893-11e9-88d7-48b59cd107f7.png)
 
 **query prompt shell**
 
-![](https://user-images.githubusercontent.com/19553554/51815067-71070f80-22f9-11e9-9dae-4b6cbb5947a0.gif)
+![](https://user-images.githubusercontent.com/19553554/64939406-766a9780-d893-11e9-81a0-d0d5b9c4897d.png)
 
 **records prompt shell**
-> 数据表名称为 `words`
+> 使用 SQLite 数据库，表名称为 `words`
 
-![](https://user-images.githubusercontent.com/19553554/51814828-2fc23000-22f8-11e9-9209-cc7ef15b40c6.gif)
+![](https://user-images.githubusercontent.com/19553554/64939407-77032e00-d893-11e9-97e0-3f70328148b9.png)
 
 
 ### 🔧 配置

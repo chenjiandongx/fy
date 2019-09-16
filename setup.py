@@ -28,6 +28,7 @@ setup(
         "litecli",
         "pony",
         "googletrans",
+        "pangu",
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
