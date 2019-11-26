@@ -39,21 +39,21 @@
 ### 🔰 安装
 
 **pip 安装**
-```bash
-$ pip install fy
+```shell
+$ pip(3) install fy
 ```
 
 **源码安装**
-```bash
+```shell
 $ git clone https://github.com/chenjiandongx/fy.git
 $ cd fy
-$ pip install -r requirements.txt
+$ pip(3) install -r requirements.txt
 $ python setup.py install
 ```
 
 ### 📝 使用
 
-```bash
+```shell
 $ fy --help
 usage: fy [-h] [-s] [-r] [-R] [-v] [WORDS [WORDS ...]]
 
@@ -72,25 +72,24 @@ optional arguments:
 
 **查单词**
 
-![](https://user-images.githubusercontent.com/19553554/64939403-75396a80-d893-11e9-9772-021f165d6647.png)
+![](https://user-images.githubusercontent.com/19553554/69591804-d49fbd80-102e-11ea-99bc-9736579c11c3.png)
 
 **英译中**
 
-![](https://user-images.githubusercontent.com/19553554/64939404-75d20100-d893-11e9-97a3-c574dc75df2a.png)
+![](https://user-images.githubusercontent.com/19553554/69591834-f26d2280-102e-11ea-99fe-fe32959d8315.png)
 
 **中译英**
 
-![](https://user-images.githubusercontent.com/19553554/64939405-75d20100-d893-11e9-88d7-48b59cd107f7.png)
+![](https://user-images.githubusercontent.com/19553554/69591847-00bb3e80-102f-11ea-84fd-5e4f75432830.png)
 
 **query prompt shell**
 
-![](https://user-images.githubusercontent.com/19553554/64939406-766a9780-d893-11e9-81a0-d0d5b9c4897d.png)
+![](https://user-images.githubusercontent.com/19553554/69591973-6f989780-102f-11ea-8673-d9eb4cb2b9a4.png)
 
 **records prompt shell**
 > 使用 SQLite 数据库，表名称为 `words`
 
-![](https://user-images.githubusercontent.com/19553554/64939407-77032e00-d893-11e9-97e0-3f70328148b9.png)
-
+![](https://user-images.githubusercontent.com/19553554/69591957-63143f00-102f-11ea-90d7-85c381b7f0b3.png)
 
 ### 🔧 配置
 
